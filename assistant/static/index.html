@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaiWorks Assistant</title>
+<style>
+  :root { --bg:#f6f7f9; --card:#fff; --ink:#1b1f24; --muted:#6b7280; --line:#e5e7eb; --accent:#0f766e; --me:#0f766e; --warn:#b45309; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0f1115; --card:#181b21; --ink:#e7e9ee; --muted:#9aa1ad; --line:#2a2f38; --accent:#2dd4bf; --me:#115e59; --warn:#f59e0b; } }
+  * { box-sizing: border-box; }
+  body { margin:0; font:15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; background:var(--bg); color:var(--ink); }
+  main { max-width:760px; margin:0 auto; min-height:100vh; display:flex; flex-direction:column; padding:0 16px; }
+  header { display:flex; gap:12px; align-items:center; padding:16px 0; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  header h1 { font-size:17px; margin:0; flex:1; }
+  select, input, button { font:inherit; color:inherit; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:9px 12px; }
+  label.dbg { color:var(--muted); font-size:13px; display:flex; gap:6px; align-items:center; }
+  #log { flex:1; padding:16px 0; display:flex; flex-direction:column; gap:12px; }
+  .msg { max-width:88%; padding:10px 14px; border-radius:14px; background:var(--card); border:1px solid var(--line); white-space:pre-wrap; }
+  .me { align-self:flex-end; background:var(--me); color:#fff; border:none; }
+  .abstain { border-color:var(--warn); }
+  .cites { margin-top:8px; display:flex; gap:6px; flex-wrap:wrap; }
+  .cite { font-size:12px; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:2px 8px; }
+  .debug { margin-top:8px; font:12px/1.4 ui-monospace, Consolas, monospace; color:var(--muted); white-space:pre-wrap; border-top:1px dashed var(--line); padding-top:6px; }
+  .debug[hidden] { display:none; }
+  .hint { color:var(--muted); font-size:13px; }
+  .hint button { font-size:13px; padding:4px 10px; margin:4px 4px 0 0; border-radius:999px; }
+  form { display:flex; gap:8px; padding:12px 0 20px; position:sticky; bottom:0; background:var(--bg); }
+  form input { flex:1; min-width:0; }
+  form button { background:var(--accent); color:#fff; border:none; cursor:pointer; }
+  form button:disabled { opacity:.5; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>SaiWorks Assistant</h1>
+    <select id="tenant" aria-label="Business"></select>
+    <label class="dbg"><input type="checkbox" id="showDebug"> owner debug</label>
+  </header>
+  <div id="log">
+    <div class="hint">Ask anything about this business. Answers come only from the business's own information, with sources.
+      <div id="samples"></div></div>
+  </div>
+  <form id="f">
+    <input id="q" placeholder="e.g. How much is a haircut?" autocomplete="off" maxlength="300" required>
+    <button id="send">Send</button>
+  </form>
+</main>
+<script src="/app.js" defer></script>
+</body>
+</html>

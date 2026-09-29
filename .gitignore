@@ -1,0 +1,9 @@
+__pycache__/
+*.db
+*.db-wal
+*.db-shm
+.env
+dist/
+evals/reports/*
+!evals/reports/.gitkeep
+.venv/
